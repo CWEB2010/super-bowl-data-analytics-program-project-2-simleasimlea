@@ -48,5 +48,4 @@ Date,SB,Attendance,QB  Winner,Coach Winner,Winner,Winning Pts,QB Loser,Coach Los
 3-Feb-13,XLVII,71024,Joe Flacco,John Harbaugh,Baltimore Ravens,34,Colin Kaepernick,Jim Harbaugh,San Francisco 49ers,31,Joe Flacco,Mercedes-Benz Superdome,New Orleans,Louisiana
 2-Feb-14,XLVIII,82529,Russell Wilson,Pete Carroll,Seattle Seahawks,43,Peyton Manning,John Fox,Denver Broncos,8,Malcolm Smith,MetLife Stadium,East Rutherford,New Jersey
 1-Feb-15,XLIX,70288,Tom Brady,Bill Belichick,New England Patriots,28,Russell Wilson,Pete Carroll,Seattle Seahawks,24,Tom Brady,University of Phoenix Stadium,Glendale,Arizona
-7-Feb-16,L ,71088,Peyton Manning,Gary Kubiak,Denver Broncos,24,Cam Newton,Ron Rivera,Carolina Panthers,10,Von Miller,Levi's Stadium,Santa Clara,California
-5-Feb-17,LI ,70807,Tom Brady,Bill Belichick,New England Patriots,34,Matt Ryan,Dan Quinn,Atlanta Falcons,28,Tom Brady,NRG Stadium,Houston,Texas
+7-Feb-16,L ,71088,Peyton Manning,Gary Kubiak,Denver Broncos,24,Cam Newton,Ron Rivera,Carolina Panthers,1
