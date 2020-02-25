@@ -1,51 +1,51 @@
-﻿namespace Project_Two
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+
+public class WinningTeam
 {
-	internal class WinningTeam
+	//Declarations
+
+	public string Sdate { get; set; }
+	public string SB { get; set; }
+	public string Attendance { get; set; }
+	public string QBWinner { get; set; }
+	public string CoachWinner { get; set; }
+	public string Winner { get; set; }
+	public string WinningPts { get; set; }
+	public string QBLoser { get; set; }
+	public string CoachLoser { get; set; }
+	public string Loser { get; set; }
+	public string LosingPts { get; set; }
+	public string MVP { get; set; }
+	public string Stadium { get; set; }
+	public string City { get; set; }
+	public string State { get; set; }
+
+
+	public WinningTeam(string Sdate, string SB, string Attendance, string QBWinner, string CoachWinner, string Winner, string WinningPts, string QBLoser, string CoachLoser, string Loser, string LosingPts, string MVP, string Stadium, string City, string State)
 	{
-		private object date;
-		private object sB;
-		private object qBWinner;
-		private object coachWinner;
-		private object winner;
-		private object winningPts;
-		private object qBLoser;
-		private object coachLoser;
-		private object loser;
-		private object losingPts;
-		private object mVP;
-		private object stadium;
-		private object city;
-		private object state;
-
-		public WinningTeam(string v)
-		{
-		}
-
-		public WinningTeam(string winner, string sB, string date, string qBWinner, string mVP)
-		{
-			this.winner = winner;
-			this.sB = sB;
-			this.date = date;
-			this.qBWinner = qBWinner;
-			this.mVP = mVP;
-		}
-
-		public WinningTeam(object date, object sB, object qBWinner, object coachWinner, object winner, object winningPts, object qBLoser, object coachLoser, object loser, object losingPts, object mVP, object stadium, object city, object state)
-		{
-			this.date = date;
-			this.sB = sB;
-			this.qBWinner = qBWinner;
-			this.coachWinner = coachWinner;
-			this.winner = winner;
-			this.winningPts = winningPts;
-			this.qBLoser = qBLoser;
-			this.coachLoser = coachLoser;
-			this.loser = loser;
-			this.losingPts = losingPts;
-			this.mVP = mVP;
-			this.stadium = stadium;
-			this.city = city;
-			this.state = state;
-		}
+		this.Sdate = Sdate;
+		this.SB = SB;
+		this.Attendance = Attendance;
+		this.QBWinner = QBWinner;
+		this.CoachWinner = CoachWinner;
+		this.Winner = Winner;
+		this.WinningPts = WinningPts;
+		this.QBLoser = QBLoser;
+		this.CoachLoser = CoachLoser;
+		this.Loser = Loser;
+		this.LosingPts = LosingPts;
+		this.MVP = MVP;
+		this.Stadium = Stadium;
+		this.City = City;
+		this.State = State;
 	}
 }
+
+
+
+
+
+
+

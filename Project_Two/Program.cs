@@ -2,94 +2,106 @@
 using System.Collections.Generic;
 using System.IO;
 
+
 namespace Project_Two
 {
 	class Program
 	{
 		static readonly string textFile = @"C:\Users\simlea\Desktop\MyAssignments\Project2\Super_Bowl_Project.csv";
 		static string path = @"C:\Users\simlea\Desktop\MyAssignments\Project2\Super_Bowl_Report.txt";
-		
+
 
 		static void Main(string[] args)
 		{
 			try
 			{
-			if (File.Exists(textFile))
-			{
-				using (StreamReader file = new StreamReader(textFile))
+				if (File.Exists(textFile))
 				{
-					int counter = 0;
-					string ln;
-
-					List<WinningTeam> Team = new List<WinningTeam>();
-
-					
-					while ((ln = file.ReadLine()) != null)
+					using (StreamReader file = new StreamReader(textFile))
+						
 					{
+						int counter = 0;
+						string ln;
+
+						List<WinningTeam> Team = new List<WinningTeam>();
+
+
+						while ((ln = file.ReadLine()) != null)
+						{
 
 							string[] col = ln.Split(',');
 
 							{
-				
-							WinningTeam team = new WinningTeam(date: col[0], sB: col[1], qBWinner: col[2], coachWinner: col[3], winner: col[4], winningPts: col[5],
-							qBLoser: col[6], coachLoser: col[7], loser: col[8], losingPts: col[9], mVP: col[10], stadium: col[11], city: col[12], state: col[13]);
-							Team.Add(team);
-							Console.WriteLine(col[7]);
-							counter++;
+								if (counter > 1)
+
+								{
+									WinningTeam team = new WinningTeam(col[0], col[1], col[2], col[3], col[4], col[5], col[6], col[7], col[8], col[9], col[10], col[11], col[12], col[13], col[14]);
+									Team.Add(team);
+		
+								}
+								counter++;
+							}
 						}
+						file.Close();
+						Console.WriteLine($"File has {counter} lines.");
+
+
 					}
-					file.Close();
-					Console.WriteLine($"File has {counter} lines.");
-				}
 				}
 			}
 			catch (Exception e)
+			//catch FileNotFoundException
 			{
 				Console.WriteLine("The process failed: {0}", e.ToString());
 			}
 
+			using (StreamWriter file = File.CreateText(path))
+			
+
 			//using (StreamWriter file = new StreamWriter(path))
-			//{
-			//	string[] lines = File.ReadAllLines(textFile);
-			//	foreach (string line in lines)
+			{
+				string[] lines = File.ReadAllLines(textFile);
+				foreach (string line in lines)
 
-			//	{
-			//		string[] col = line.Split(',');
+				{
+					string[] col = line.Split(',');
 
-			//		WinningTeam team = new WinningTeam(date: col[0], sB: col[1], qBWinner: col[2], coachWinner: col[3], winner: col[4], winningPts: col[5],
-			//		 qBLoser: col[6], coachLoser: col[7], loser: col[8], losingPts: col[9], mVP: col[10], stadium: col[11], city: col[12], state: col[13]);
+					WinningTeam team = new WinningTeam(col[0], col[1], col[2], col[3], col[4], col[5], col[6], col[7], col[8], col[9], col[10], col[11], col[12], col[13], col[14]);
 
-			//		WinningTeam team2 = new WinningTeam(winner: col[4], sB: col[1], date: col[0], qBWinner: col[2], mVP: col[10]);
+					//file.WriteLine(line);
+				}
 
-			//		file.WriteLine(line);
-			//	}
-
-			//	//file.Close();
+				file.Close();
 
 
-			//	using (StreamWriter bfile = new StreamWriter(path))
-			//	{
-			//		string[] blines = File.ReadAllLines(textFile);
-			//		foreach (string bline in blines)
 
-			//		{
-			//			string[] col = bline.Split(',');
+				using (StreamWriter bfile = File.AppendText(path))
+				//using (StreamWriter bfile = new StreamWriter(path))
+				{
+					string[] blines = File.ReadAllLines(textFile);
 
+					Console.WriteLine("Winner, Sdate, QBWinner, CoachWinner, MVP, WinningPts,LosingPts");
 
-			//			WinningTeam team2 = new WinningTeam(winner: col[4], sB: col[1], date: col[0], qBWinner: col[2], mVP: col[10]);
+					foreach (string bline in blines)
 
+					{
+						string[] col = bline.Split(',');
 
-			//			file.WriteLine("testing" + bline);
-			//		}
+						WinningTeam team = new WinningTeam(col[0], col[1], col[2], col[3], col[4], col[5], col[6], col[7], col[8], col[9], col[10], col[11], col[12], col[13], col[14]);
+						
+						bfile.WriteLine("testing" + team.Winner + string.Format("{0:y yy yyy yyyy}", team.Sdate) + team.QBWinner + team.CoachWinner + team.MVP + team.WinningPts + team.LosingPts);
 
-			//		bfile.Close();
-			//	}
+					}
+
+					bfile.Close();
+				}
 
 
 				Console.ReadKey();
 			}
 		}
 	}
+}
 
 
 
