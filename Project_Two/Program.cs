@@ -11,7 +11,7 @@ namespace Project_Two
 	{
 		//static readonly string textFile = @"C:\Users\simlea\Desktop\MyAssignments\Project2\Super_Bowl_Project.csv";
 		//static readonly string path = @"C:\Users\simlea\Desktop\MyAssignments\Project2\Super_Bowl_Report.txt";
-		
+
 
 		static void Main(string[] args)
 		{
@@ -30,17 +30,17 @@ namespace Project_Two
 				"for the file from which we should read?\n\n" +
 				"for example: C:\\Users\\simlea\\Desktop\\MyAssignments\\Project2\\Super_Bowl_Project.csv");
 
-				textFile = Console.ReadLine();
-				textFile = @"textFile";
+				
+				textFile = @Console.ReadLine();
 
+				
 				Console.WriteLine(textFile);
 
 				Console.WriteLine("\nWhat is the path (folders & file name)\n" +
 				"for the file to which we should write?\n\n" +
 				"for example: C:\\Users\\simlea\\Desktop\\MyAssignments\\Project2\\Super_Bowl_Report.txt");
 
-				path = Console.ReadLine();
-				path = @"path";
+				path = @Console.ReadLine();
 
 				Console.WriteLine(path);
 
@@ -106,8 +106,8 @@ namespace Project_Two
 					file.Close();
 
 
-					using (StreamWriter bfile = File.AppendText(path))
 					//Generate a list of the top five attended super bowls
+					using (StreamWriter bfile = File.AppendText(path))
 
 					{
 
@@ -126,14 +126,58 @@ namespace Project_Two
 							counter++;
 						}
 
-
-
-
 					}
 
 					file.Close();
-					primingValue = Convert.ToString(Console.ReadLine().ToUpper());
 
+
+					//Generate a list of states that hosted the most super bowls
+					using (StreamWriter cfile = File.AppendText(path))
+
+					{
+
+						cfile.WriteLine("\n\nCreate the right headings, LeAnn");
+						Console.WriteLine("\n\nCreate the right headings, LeAnn");
+
+						var qryState = from s in Team
+									   group s by new
+									   {
+										   s.State//,
+												  //   s.City,
+												  // s.Stadium
+									   }
+							   into sg
+									   select new
+									   {
+										   sg.Key.State,
+										   //sg.Key.City,
+										   //sg.Key.Stadium, 
+										   myCount = sg.Key.State.Count()
+									   }
+							   into sgc
+									   orderby sgc.myCount descending
+									   select new
+									   {
+										   sgc.myCount,
+										   sgc.State
+									   };
+							   //  sgc.City,
+							   //  sgc.Stadium}
+							  // ;
+
+						qryState.ToList().ForEach(s => Console.WriteLine(s.State + " hosted " + s.myCount + "." )); // +
+							//s.City + " at the " + s.Stadium));
+						qryState.ToList().ForEach(s => cfile.WriteLine(s.State + " hosted " + s.myCount + "." )); // +
+							//s.City + " at the " + s.Stadium));
+
+
+
+					
+						cfile.Close();
+
+					}
+
+					primingValue = Convert.ToString(Console.ReadLine().ToUpper());
 
 				}
 			}
