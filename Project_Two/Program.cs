@@ -30,10 +30,10 @@ namespace Project_Two
 				"for the file from which we should read?\n\n" +
 				"for example: C:\\Users\\simlea\\Desktop\\MyAssignments\\Project2\\Super_Bowl_Project.csv");
 
-				
+
 				textFile = @Console.ReadLine();
 
-				
+
 				Console.WriteLine(textFile);
 
 				Console.WriteLine("\nWhat is the path (folders & file name)\n" +
@@ -161,29 +161,83 @@ namespace Project_Two
 										   sgc.myCount,
 										   sgc.State
 									   };
-							   //  sgc.City,
-							   //  sgc.Stadium}
-							  // ;
+						//  sgc.City,
+						//  sgc.Stadium}
+						// ;
 
-						qryState.ToList().ForEach(s => Console.WriteLine(s.State + " hosted " + s.myCount + "." )); // +
-							//s.City + " at the " + s.Stadium));
-						qryState.ToList().ForEach(s => cfile.WriteLine(s.State + " hosted " + s.myCount + "." )); // +
-							//s.City + " at the " + s.Stadium));
+						qryState.ToList().ForEach(s => Console.WriteLine(s.State + " hosted " + s.myCount + ".")); // +
+																												   //s.City + " at the " + s.Stadium));
+						qryState.ToList().ForEach(s => cfile.WriteLine(s.State + " hosted " + s.myCount + ".")); // +
+																												 //s.City + " at the " + s.Stadium));
 
-
-
-					
 						cfile.Close();
+					
+
+
+						//Generate a list of players who won MVP more than twice 
+
+						using (StreamWriter dfile = File.AppendText(path))
+
+						{
+
+							dfile.WriteLine("\n\nCreate the right headings, LeAnn");
+							Console.WriteLine("\n\nCreate the right headings, LeAnn");
+
+							var qryMVP = from s in Team
+										 group s by s.MVP into sg
+										 select new
+										 {
+											 MVP = sg.Key,
+											 mvpCount = sg.Key.Count() 
+
+																	 //sg.Key.Winner,
+																	 //sg.Key.Loser
+										 }
+										 ;
+
+							qryMVP.ToList().ForEach(s => Console.WriteLine(s.MVP + " won " + s.mvpCount));
+
+							qryMVP.ToList().ForEach(s => dfile.WriteLine(s.MVP + " won " + s.mvpCount)); // +
+
+							dfile.Close();
+
+						}
+
+						//Which coach lost the most super bowls?
+
+						using (StreamWriter efile = File.AppendText(path))
+
+						{
+
+							efile.WriteLine("\n\nCreate the right headings, LeAnn");
+							Console.WriteLine("\n\nCreate the right headings, LeAnn");
+
+							var qryLCoach = from s in Team
+											group s by s.CoachLoser.Max() into sg
+											select new
+											{
+												sg.Key//,
+												//clCount = CoachLoser.Count()
+											}; 
+
+							
+						qryLCoach.ToList().ForEach(s => Console.WriteLine());
+
+							qryLCoach.ToList().ForEach(s => efile.WriteLine()); // +
+
+							efile.Close();
+
+						}
+
+						primingValue = Convert.ToString(Console.ReadLine().ToUpper());
 
 					}
-
-					primingValue = Convert.ToString(Console.ReadLine().ToUpper());
-
 				}
 			}
 		}
 	}
 }
+
 
 
 
