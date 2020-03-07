@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -22,11 +21,11 @@ namespace Project_Two
 
 			Console.WriteLine("\nWhat is your name? (Enter X to exit.)");
 
-			primingValue = Convert.ToString(Console.ReadLine().ToUpper());//using primingValue for user name and also to exit out
+			primingValue = Convert.ToString(Console.ReadLine());//using primingValue for user name and also to exit out
 
-			if (primingValue != "X")
+			if (primingValue != "X" & primingValue != "x")
 			{
-				Console.WriteLine("\nWhat is the path (folders & file name)\n" +
+				Console.WriteLine("\nWelcome " + primingValue + "! \n\nWhat is the path (folders & file name)\n" +
 				"for the file from which we should read?\n\n" +
 				"for example: C:\\Users\\simlea\\Desktop\\MyAssignments\\Project2\\Super_Bowl_Project.csv");
 
@@ -43,6 +42,9 @@ namespace Project_Two
 				path = @Console.ReadLine();
 
 				Console.WriteLine(path);
+
+				Console.Clear();
+				Console.WriteLine("The Super Bowl Mega Report is being prepared and written to your location, as instructed.");
 
 				try
 				{
@@ -68,15 +70,14 @@ namespace Project_Two
 									{
 										WinningTeam team = new WinningTeam(col[0], col[1], col[2], col[3], col[4], col[5], col[6], col[7], col[8], col[9], col[10], col[11], col[12], col[13], col[14]);
 										Team.Add(team);
-										Console.WriteLine(ln);
+										//Console.WriteLine(ln); don't need this for report, but can output the list called ln for testing.
 
 									}
 									counter++;
 								}
 							}
 							file.Close();
-							Console.WriteLine($"File has {counter} lines.");
-
+							Console.WriteLine($"FYI: The file being read has {counter} lines.\nIt is outputted below, in addition to your file, for your convenience.\n\n");
 
 						}
 					}
@@ -91,15 +92,16 @@ namespace Project_Two
 
 				{
 
-					file.WriteLine("Team Name" + "\t" + "Year of Win" + "\t" + "Winning QB" + "\t" + "Winning Coach" + "\t" + "MVP" + "\t" + "Point Difference");
-					Console.WriteLine("Team Name" + "\t" + "Year of Win" + "\t" + "Winning QB" + "\t" + "Winning Coach" + "\t" + "MVP" + "\t" + "Point Difference");
+					Console.WriteLine("Super Bowl Winners\n\n");
+					file.WriteLine("Team Name" + "\t\t" + "Year of Win" + "\t\t" + "Winning QB" + "\t\t" + "Winning Coach" + "\t\t" + "MVP" + "\t\t" + "Point Difference");
+					Console.WriteLine("Team Name" + "\t\t" + "Year of Win" + "\t\t" + "Winning QB" + "\t\t" + "Winning Coach" + "\t\t" + "MVP" + "\t\t" + "Point Difference");
 
 
 					foreach (WinningTeam item in Team)
 					{
 
-						file.WriteLine(item.Winner + "\t" + item.Sdate.Year + "\t" + item.QBWinner + "\t" + item.CoachWinner + "\t" + item.MVP + "\t" + (item.WinningPts - item.LosingPts));
-						Console.WriteLine(item.Winner + "\t" + item.Sdate.Year + "\t" + item.QBWinner + "\t" + item.CoachWinner + "\t" + item.MVP + "\t" + (item.WinningPts - item.LosingPts));
+						file.WriteLine(item.Winner + "\t\t" + item.Sdate.Year + "\t\t" + item.QBWinner + "\t\t" + item.CoachWinner + "\t\t" + item.MVP + "\t\t" + (item.WinningPts - item.LosingPts));
+						Console.WriteLine(item.Winner + "\t\t" + item.Sdate.Year + "\t\t" + item.QBWinner + "\t\t" + item.CoachWinner + "\t\t" + item.MVP + "\t\t" + (item.WinningPts - item.LosingPts));
 
 					}
 
@@ -110,21 +112,33 @@ namespace Project_Two
 					using (StreamWriter bfile = File.AppendText(path))
 
 					{
+						bfile.WriteLine("Attendance" + "\t\t" + "Year of Win" + "\t\t" + "Winning Team" + "\t\t" + "Losing Team" + "\t\t" + "City" + "\t\t" + "State" + "\t\t" + "Stadium");
+						Console.WriteLine("Attendance" + "\t\t" + "Year of Win" + "\t\t" + "Winning Team" + "\t\t" + "Losing Team" + "\t\t" + "City" + "\t\t" + "State" + "\t\t" + "Stadium");
 
-						bfile.WriteLine("\n\nCreate the right headings, LeAnn");
-						Console.WriteLine("\n\nCreate the right headings, LeAnn");
+						bfile.WriteLine("\n\nTop Five Attended Super Bowls\n");
+						Console.WriteLine("\n\nTop Five Attended Super Bowls\n");
 
-						int counter = 0;
+						//works...but not the point of exercise. Learning to use LINQ. So, replaced with other code.
+						//int counter = 0;
+						//
+						//foreach (WinningTeam item in Team.OrderByDescending(x => x.Attendance))
+						//{
+						//	if (counter < 5)
 
-						foreach (WinningTeam item in Team.OrderByDescending(x => x.Attendance))
-						{
-							if (counter < 5)
+						//	{
+						//		bfile.WriteLine(item.Attendance + "\t" + item.Sdate.Year + "\t" + item.Winner + "\t" + item.Loser + "\t" + item.City + "\t" + item.State + "\t" + item.Stadium);
+						//		Console.WriteLine(item.Attendance + "\t" + item.Sdate.Year + "\t" + item.Winner + "\t" + item.Loser + "\t" + item.City + "\t" + item.State + "\t" + item.Stadium);
 
-							{
-								bfile.WriteLine(item.Sdate.Year + "\t" + item.Winner + "\t" + item.Loser + "\t" + item.City + "\t" + item.State + "\t" + item.Stadium);
-							}
-							counter++;
-						}
+						//	}
+						//	counter++;
+						//}
+
+						var qryTopFive = (from item in Team
+										  orderby item.Attendance descending
+										  select item).Take(5);
+
+						qryTopFive.ToList().ForEach(s => bfile.WriteLine(s.Attendance + "\t" + s.Sdate.Year + "\t" + s.Winner + "\t" + s.Loser + "\t" + s.City + "\t" + s.State + "\t" + s.Stadium));
+						qryTopFive.ToList().ForEach(s => Console.WriteLine(s.Attendance + "\t" + s.Sdate.Year + "\t" + s.Winner + "\t" + s.Loser + "\t" + s.City + "\t" + s.State + "\t" + s.Stadium));
 
 					}
 
@@ -136,39 +150,29 @@ namespace Project_Two
 
 					{
 
-						cfile.WriteLine("\n\nCreate the right headings, LeAnn");
-						Console.WriteLine("\n\nCreate the right headings, LeAnn");
+						cfile.WriteLine("\n\nStates & Stats on SuperBowls Hosted");
+						Console.WriteLine("\n\nStates & Stats on SuperBowls Hosted");
 
 						var qryState = from s in Team
-									   group s by new
+									   select new
 									   {
-										   s.State//,
-												  //   s.City,
-												  // s.Stadium
+										   s.State,
+										   s.City,
+										   s.Stadium, 
+										   myCount = s.State.Count()
 									   }
 							   into sg
+									   orderby sg.myCount descending
 									   select new
 									   {
-										   sg.Key.State,
-										   //sg.Key.City,
-										   //sg.Key.Stadium, 
-										   myCount = sg.Key.State.Count()
-									   }
-							   into sgc
-									   orderby sgc.myCount descending
-									   select new
-									   {
-										   sgc.myCount,
-										   sgc.State
+										   sg.myCount,
+										   sg.State,
+										   sg.City,
+										   sg.Stadium
 									   };
-						//  sgc.City,
-						//  sgc.Stadium}
-						// ;
 
-						qryState.ToList().ForEach(s => Console.WriteLine(s.State + " hosted " + s.myCount + ".")); // +
-																												   //s.City + " at the " + s.Stadium));
-						qryState.ToList().ForEach(s => cfile.WriteLine(s.State + " hosted " + s.myCount + ".")); // +
-																												 //s.City + " at the " + s.Stadium));
+						qryState.ToList().ForEach(s => Console.WriteLine(s.State + " hosted " + s.myCount + "." + s.City + " at the " + s.Stadium));
+						qryState.ToList().ForEach(s => cfile.WriteLine(s.State + " hosted " + s.myCount + "." + s.City + " at the " + s.Stadium));
 
 						cfile.Close();
 					
