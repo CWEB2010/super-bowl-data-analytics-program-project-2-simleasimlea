@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Linq;
+using System.Collections;
 
 namespace Project_Two
 {
 	class Program
 	{
-		//static readonly string textFile = @"C:\Users\simlea\Desktop\MyAssignments\Project2\Super_Bowl_Project.csv";
-		//static readonly string path = @"C:\Users\simlea\Desktop\MyAssignments\Project2\Super_Bowl_Report.txt";
-
 
 		static void Main(string[] args)
 		{
@@ -25,7 +23,7 @@ namespace Project_Two
 
 			if (primingValue != "X" & primingValue != "x")
 			{
-				/*Temporarily commenting out user input of path, etc. and hard coding for ease - LeAnn
+				
 				Console.WriteLine("\nWelcome " + primingValue + "! \n\nWhat is the path (folders & file name)\n" +
 				"for the file from which we should read?\n\n" +
 				"for example: C:\\Users\\simlea\\Desktop\\MyAssignments\\Project2\\Super_Bowl_Project.csv");
@@ -40,10 +38,11 @@ namespace Project_Two
 
 				path = @Console.ReadLine();
 
-				Console.WriteLine(path); */
+				Console.WriteLine(path);
 
-				textFile = @"C:\Users\simlea\Desktop\MyAssignments\Project2\Super_Bowl_Project.csv";
-				path = @"C:\Users\simlea\Desktop\MyAssignments\Project2\Super_Bowl_Report.txt";
+				//In case I wish to hard code...
+				//textFile = @"C:\Users\simlea\Desktop\MyAssignments\Project2\Super_Bowl_Project.csv";
+				//path = @"C:\Users\simlea\Desktop\MyAssignments\Project2\Super_Bowl_Report.txt";
 
 				Console.Clear();
 				Console.WriteLine("The Super Bowl Mega Report is being prepared and written to your location, as instructed.");
@@ -94,7 +93,9 @@ namespace Project_Two
 
 				{
 
-					Console.WriteLine("Super Bowl Winners\n\n");
+					Console.WriteLine("\n\nSuper Bowl Winners\n");
+					file.WriteLine("\n\nSuper Bowl Winners\n");
+
 					file.WriteLine("Team Name" + "\t\t" + "Year of Win" + "\t\t" + "Winning QB" + "\t\t" + "Winning Coach" + "\t\t" + "MVP" + "\t\t" + "Point Difference");
 					Console.WriteLine("Team Name" + "\t\t" + "Year of Win" + "\t\t" + "Winning QB" + "\t\t" + "Winning Coach" + "\t\t" + "MVP" + "\t\t" + "Point Difference");
 
@@ -152,8 +153,8 @@ namespace Project_Two
 
 					{
 
-						cfile.WriteLine("\n\nStates & Stats on SuperBowls Hosted");
-						Console.WriteLine("\n\nStates & Stats on SuperBowls Hosted");
+						cfile.WriteLine("\n\nStates & Stats on SuperBowls Hosted\n");
+						Console.WriteLine("\n\nStates & Stats on SuperBowls Hosted\n");
 
 						var qryState = from stateRecord in Team
 									   group stateRecord by new
@@ -191,7 +192,7 @@ namespace Project_Two
 							}
 						}
 
-			
+
 						cfile.Close();
 
 
@@ -208,7 +209,7 @@ namespace Project_Two
 										   where MVPGroup.Count() > 2
 										   orderby MVPGroup.Key
 										   select MVPGroup;
-	
+
 							foreach (var m in MVPCount)
 							{
 								Console.WriteLine($"{ m.Key } has {  m.Count() }.");
@@ -231,36 +232,178 @@ namespace Project_Two
 
 							var CoachLoss = from cl in Team
 											.GroupBy(cl => cl.CoachLoser)
-											orderby cl.Count()
-											//where cl.Max() = cl.Key.Count()
+												//orderby cl.Count() descending
 											select new
-											 
+
 											{
 												cl.Key,
 												Most = cl.Count()
-						 
-											}
-											 ;
-							
-							foreach (var cl in CoachLoss)
+											};
 
+
+							foreach (var cl in CoachLoss)
 							{
-								Console.WriteLine($"{ cl.Key } lost { cl.Most }.");
-								//efile.WriteLine($"{ cl.Key } lost { cl.Count() }.");
+								if (cl.Most == CoachLoss.Max(x => x.Most))
+								{
+									Console.WriteLine($"{ cl.Key } lost { cl.Most }.");
+									efile.WriteLine($"{ cl.Key } lost { cl.Most }.");
+								};
 							}
 
-							efile.Close(); 
+							efile.Close();
 
 						}
 
-						primingValue = Convert.ToString(Console.ReadLine().ToUpper());
 
+						//Which coach lost the most super bowls?
+
+						using (StreamWriter ffile = File.AppendText(path))
+
+						{
+
+							ffile.WriteLine("\n\nCoach Who Won the Most Super Bowls:");
+							Console.WriteLine("\n\nCoach Who Won the Most Super Bowls:");
+
+							var CoachWin = from cl in Team
+											.GroupBy(cl => cl.CoachWinner)
+										   select new
+
+										   {
+											   cl.Key,
+											   Most = cl.Count()
+										   };
+
+
+							foreach (var cl in CoachWin)
+							{
+								if (cl.Most == CoachWin.Max(x => x.Most))
+								{
+									Console.WriteLine($"{ cl.Key } won { cl.Most }.");
+									ffile.WriteLine($"{ cl.Key } won { cl.Most }.");
+								};
+							}
+
+							ffile.Close();
+
+						}
+
+						using (StreamWriter gfile = File.AppendText(path))
+
+						{
+
+							gfile.WriteLine("\n\nTeam Who Won the Most Super Bowls:");
+							Console.WriteLine("\n\nTeam Who Won the Most Super Bowls:");
+
+							var TeamWin = from cl in Team
+											.GroupBy(cl => cl.Winner)
+										  select new
+
+										  {
+											  cl.Key,
+											  Most = cl.Count()
+										  };
+
+
+							foreach (var cl in TeamWin)
+							{
+								if (cl.Most == TeamWin.Max(x => x.Most))
+								{
+									Console.WriteLine($"{ cl.Key } won { cl.Most }.");
+									gfile.WriteLine($"{ cl.Key } won { cl.Most }.");
+								};
+							}
+
+							gfile.Close();
+
+						}
+
+						using (StreamWriter hfile = File.AppendText(path))
+
+						{
+
+							hfile.WriteLine("\n\nTeam Who Lost the Most Super Bowls:");
+							Console.WriteLine("\n\nTeam Who Lost the Most Super Bowls:");
+
+							var TeamLoser = from cl in Team
+											.GroupBy(cl => cl.Loser)
+											select new
+
+											{
+												cl.Key,
+												Most = cl.Count()
+											};
+
+
+							foreach (var cl in TeamLoser)
+							{
+								if (cl.Most == TeamLoser.Max(x => x.Most))
+								{
+									Console.WriteLine($"{ cl.Key } lost { cl.Most }.");
+									hfile.WriteLine($"{ cl.Key } lost { cl.Most }.");
+								};
+							}
+
+							hfile.Close();
+
+						}
+
+						using (StreamWriter ifile = File.AppendText(path))
+
+						{
+
+							ifile.WriteLine("\n\nSuper Bowl with the Greatest Point Difference:");
+							Console.WriteLine("\n\nSuper Bowl with the Greatest Point Difference:");
+
+							var PointDiff = from cl in Team
+											select new
+
+											{
+												cl.Sdate.Year,
+												cl.Winner,
+												Most = Math.Abs(cl.WinningPts - cl.LosingPts)
+											};
+
+							foreach (var cl in PointDiff)
+							{
+								if (cl.Most == PointDiff.Max(x => x.Most))
+								{
+									Console.WriteLine($"The { cl.Year } Super Bowl, won by {cl.Winner}, had the biggest point difference of { cl.Most }.");
+									ifile.WriteLine($"{ cl.Year } had the biggest point difference of { cl.Most }.");
+								};
+							}
+
+							ifile.Close();
+
+							using (StreamWriter jfile = File.AppendText(path))
+
+							{
+
+								jfile.WriteLine("\n\nAverage Attendance of All Super Bowls:");
+								Console.WriteLine("\n\nAverage Attendance of All Super Bowls:");
+
+								var AverageAtt = (from cl in Team
+												  select cl.Attendance).Average();
+
+
+								Console.WriteLine($"The average Super Bowl attendance of all time is {Math.Round(AverageAtt)}.");
+								jfile.WriteLine($"The average Super Bowl attendance of all time is {Math.Round(AverageAtt)}.");
+
+								jfile.Close();
+
+							}
+
+									primingValue = Convert.ToString(Console.ReadLine().ToUpper());
+
+								}
+							}
+						}
 					}
 				}
 			}
 		}
-	}
-}
+
+
+
 
 
 

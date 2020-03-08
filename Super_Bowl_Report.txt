@@ -1,3 +1,7 @@
+
+
+Super Bowl Winners
+
 Team Name		Year of Win		Winning QB		Winning Coach		MVP		Point Difference
 Green Bay Packers		1967		Bart Starr		Vince Lombardi		Bart Starr		25
 Green Bay Packers		1968		Bart Starr		Vince Lombardi		Bart Starr		19
@@ -63,6 +67,7 @@ Top Five Attended Super Bowls
 
 
 States & Stats on SuperBowls Hosted
+
 Arizona: 
 	Glendale
 		In 2015 - Stadium: University of Phoenix Stadium
@@ -192,3 +197,27 @@ Tom Brady has 4.
 
 
 Coach Who Lost the Most Super Bowls:
+Don Shula lost 4.
+Bud Grant lost 4.
+Dan Reeves lost 4.
+Marv Levy lost 4.
+
+
+Coach Who Won the Most Super Bowls:
+Bill Belichick won 5.
+
+
+Team Who Won the Most Super Bowls:
+Pittsburgh Steelers won 6.
+
+
+Team Who Lost the Most Super Bowls:
+Denver Broncos lost 5.
+
+
+Super Bowl with the Greatest Point Difference:
+1990 had the biggest point difference of 45.
+
+
+Average Attendance of All Super Bowls:
+The average Super Bowl attendance of all time is 77649.
