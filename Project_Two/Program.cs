@@ -25,13 +25,12 @@ namespace Project_Two
 
 			if (primingValue != "X" & primingValue != "x")
 			{
+				/*Temporarily commenting out user input of path, etc. and hard coding for ease - LeAnn
 				Console.WriteLine("\nWelcome " + primingValue + "! \n\nWhat is the path (folders & file name)\n" +
 				"for the file from which we should read?\n\n" +
 				"for example: C:\\Users\\simlea\\Desktop\\MyAssignments\\Project2\\Super_Bowl_Project.csv");
-
-
+				
 				textFile = @Console.ReadLine();
-
 
 				Console.WriteLine(textFile);
 
@@ -41,7 +40,10 @@ namespace Project_Two
 
 				path = @Console.ReadLine();
 
-				Console.WriteLine(path);
+				Console.WriteLine(path); */
+
+				textFile = @"C:\Users\simlea\Desktop\MyAssignments\Project2\Super_Bowl_Project.csv";
+				path = @"C:\Users\simlea\Desktop\MyAssignments\Project2\Super_Bowl_Report.txt";
 
 				Console.Clear();
 				Console.WriteLine("The Super Bowl Mega Report is being prepared and written to your location, as instructed.");
@@ -118,7 +120,7 @@ namespace Project_Two
 						bfile.WriteLine("\n\nTop Five Attended Super Bowls\n");
 						Console.WriteLine("\n\nTop Five Attended Super Bowls\n");
 
-						//works...but not the point of exercise. Learning to use LINQ. So, replaced with other code.
+						//works...but not the point of exercise. Learning to use LINQ. So, replaced with other code. LeAnn
 						//int counter = 0;
 						//
 						//foreach (WinningTeam item in Team.OrderByDescending(x => x.Attendance))
@@ -153,59 +155,70 @@ namespace Project_Two
 						cfile.WriteLine("\n\nStates & Stats on SuperBowls Hosted");
 						Console.WriteLine("\n\nStates & Stats on SuperBowls Hosted");
 
-						var qryState = from s in Team
-									   select new
+						var qryState = from stateRecord in Team
+									   group stateRecord by new
 									   {
-										   s.State,
-										   s.City,
-										   s.Stadium, 
-										   myCount = s.State.Count()
-									   }
-							   into sg
-									   orderby sg.myCount descending
-									   select new
-									   {
-										   sg.myCount,
-										   sg.State,
-										   sg.City,
-										   sg.Stadium
-									   };
+										   stateRecord.State
+									   } into stateGroups
+									   from cityGroups in
+										   (from city in stateGroups
+											orderby city.City, city.Sdate.Year descending, city.Stadium
+											group city by new { city.City })
+									   orderby stateGroups.Key.State
+									   group cityGroups by new { stateGroups.Key.State };
 
-						qryState.ToList().ForEach(s => Console.WriteLine(s.State + " hosted " + s.myCount + "." + s.City + " at the " + s.Stadium));
-						qryState.ToList().ForEach(s => cfile.WriteLine(s.State + " hosted " + s.myCount + "." + s.City + " at the " + s.Stadium));
 
+						foreach (var outerGroup in qryState)
+						{
+							Console.WriteLine($"{ outerGroup.Key.State }: ");
+							cfile.WriteLine($"{ outerGroup.Key.State }: ");
+							foreach (var detail in outerGroup)
+							{
+								Console.WriteLine($"\t{ detail.Key.City }");
+								cfile.WriteLine($"\t{ detail.Key.City }");
+
+								int v_count = 0;
+								foreach (var city in detail)
+
+								{
+									Console.WriteLine($"\t\tIn {city.Sdate.Year} - Stadium: { city.Stadium} ");
+									cfile.WriteLine($"\t\tIn {city.Sdate.Year} - Stadium: { city.Stadium}");
+									v_count++;
+
+								}
+								Console.WriteLine($"\n\t\t{outerGroup.Key.State}'s Super Bowl count is { v_count }.");
+								cfile.WriteLine($"\n\t\t{outerGroup.Key.State}'s Super Bowl count is { v_count }.");
+							}
+						}
+
+			
 						cfile.Close();
-					
+
 
 
 						//Generate a list of players who won MVP more than twice 
 
 						using (StreamWriter dfile = File.AppendText(path))
-
 						{
+							dfile.WriteLine("\n\nPlayers Who Won MVP More than Twice:");
+							Console.WriteLine("\n\nPlayers Who Won MVP More than Twice:");
 
-							dfile.WriteLine("\n\nCreate the right headings, LeAnn");
-							Console.WriteLine("\n\nCreate the right headings, LeAnn");
-
-							var qryMVP = from s in Team
-										 group s by s.MVP into sg
-										 select new
-										 {
-											 MVP = sg.Key,
-											 mvpCount = sg.Key.Count() 
-
-																	 //sg.Key.Winner,
-																	 //sg.Key.Loser
-										 }
-										 ;
-
-							qryMVP.ToList().ForEach(s => Console.WriteLine(s.MVP + " won " + s.mvpCount));
-
-							qryMVP.ToList().ForEach(s => dfile.WriteLine(s.MVP + " won " + s.mvpCount)); // +
+							var MVPCount = from m in Team
+										   group m by m.MVP into MVPGroup
+										   where MVPGroup.Count() > 2
+										   orderby MVPGroup.Key
+										   select MVPGroup;
+	
+							foreach (var m in MVPCount)
+							{
+								Console.WriteLine($"{ m.Key } has {  m.Count() }.");
+								dfile.WriteLine($"{ m.Key } has {  m.Count() }.");
+							}
 
 							dfile.Close();
 
 						}
+
 
 						//Which coach lost the most super bowls?
 
@@ -213,23 +226,30 @@ namespace Project_Two
 
 						{
 
-							efile.WriteLine("\n\nCreate the right headings, LeAnn");
-							Console.WriteLine("\n\nCreate the right headings, LeAnn");
+							efile.WriteLine("\n\nCoach Who Lost the Most Super Bowls:");
+							Console.WriteLine("\n\nCoach Who Lost the Most Super Bowls:");
 
-							var qryLCoach = from s in Team
-											group s by s.CoachLoser.Max() into sg
+							var CoachLoss = from cl in Team
+											.GroupBy(cl => cl.CoachLoser)
+											orderby cl.Count()
+											//where cl.Max() = cl.Key.Count()
 											select new
+											 
 											{
-												sg.Key//,
-												//clCount = CoachLoser.Count()
-											}; 
-
+												cl.Key,
+												Most = cl.Count()
+						 
+											}
+											 ;
 							
-						qryLCoach.ToList().ForEach(s => Console.WriteLine());
+							foreach (var cl in CoachLoss)
 
-							qryLCoach.ToList().ForEach(s => efile.WriteLine()); // +
+							{
+								Console.WriteLine($"{ cl.Key } lost { cl.Most }.");
+								//efile.WriteLine($"{ cl.Key } lost { cl.Count() }.");
+							}
 
-							efile.Close();
+							efile.Close(); 
 
 						}
 

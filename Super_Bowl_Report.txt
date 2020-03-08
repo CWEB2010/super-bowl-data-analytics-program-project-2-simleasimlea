@@ -63,115 +63,132 @@ Top Five Attended Super Bowls
 
 
 States & Stats on SuperBowls Hosted
-California hosted 10.Los Angeles at the Memorial Coliseum
-California hosted 10.Los Angeles at the Memorial Coliseum
-California hosted 10.Pasadena at the Rose Bowl
-California hosted 10.Pasadena at the Rose Bowl
-California hosted 10.Pasadena at the Rose Bowl
-California hosted 10.Palo Alto at the Stanford Stadium
-California hosted 10.Pasadena at the Rose Bowl
-California hosted 10.San Diego at the Jack Murphy Stadium
-California hosted 10.Pasadena at the Rose Bowl
-California hosted 10.San Diego at the Qualcomm Stadium
-California hosted 10.San Diego at the Qualcomm Stadium
-New Jersey hosted 10.East Rutherford at the MetLife Stadium
-California hosted 10.Santa Clara at the Levi's Stadium
-Louisiana hosted 9.New Orleans at the Tulane Stadium
-Louisiana hosted 9.New Orleans at the Tulane Stadium
-Louisiana hosted 9.New Orleans at the Tulane Stadium
-Louisiana hosted 9.New Orleans at the Superdome
-Louisiana hosted 9.New Orleans at the Louisiana Superdome
-Louisiana hosted 9.New Orleans at the Louisiana Superdome
-Louisiana hosted 9.New Orleans at the Louisiana Superdome
-Minnesota hosted 9.Minneapolis at the Metrodome
-Louisiana hosted 9.New Orleans at the Louisiana Superdome
-Louisiana hosted 9.New Orleans at the Louisiana Superdome
-Louisiana hosted 9.New Orleans at the Mercedes-Benz Superdome
-Michigan hosted 8.Pontiac at the Pontiac Silverdome
-Michigan hosted 8.Detroit at the Ford Field
-Florida hosted 7.Miami at the Orange Bowl
-Florida hosted 7.Miami at the Orange Bowl
-Florida hosted 7.Miami at the Orange Bowl
-Florida hosted 7.Miami at the Orange Bowl
-Florida hosted 7.Miami at the Orange Bowl
-Florida hosted 7.Tampa at the Tampa Stadium
-Florida hosted 7.Miami Gardens at the Joe Robbie Stadium
-Florida hosted 7.Tampa at the Tampa Stadium
-Georgia hosted 7.Atlanta at the Georgia Dome
-Florida hosted 7.Miami Gardens at the Joe Robbie Stadium
-Arizona hosted 7.Tempe at the Sun Devil Stadium
-Florida hosted 7.Miami Gardens at the Pro Player Stadium
-Georgia hosted 7.Atlanta at the Georgia Dome
-Florida hosted 7.Tampa at the Raymond James Stadium
-Florida hosted 7.Jacksonville at the Alltel Stadium
-Florida hosted 7.Miami Gardens at the Dolphin Stadium
-Arizona hosted 7.Glendale at the University of Phoenix Stadium
-Florida hosted 7.Tampa at the Raymond James Stadium
-Florida hosted 7.Miami Gardens at the Sun Life Stadium
-Indiana hosted 7.Indianapolis at the Lucas Oil Stadium
-Arizona hosted 7.Glendale at the University of Phoenix Stadium
-Texas hosted 5.Houston at the Rice Stadium
-Texas hosted 5.Houston at the Reliant Stadium
-Texas hosted 5.Arlington at the Cowboys Stadium
-Texas hosted 5.Houston at the NRG Stadium
+Arizona: 
+	Glendale
+		In 2015 - Stadium: University of Phoenix Stadium
+		In 2008 - Stadium: University of Phoenix Stadium
+
+		Arizona's Super Bowl count is 2.
+	Tempe
+		In 1996 - Stadium: Sun Devil Stadium
+
+		Arizona's Super Bowl count is 1.
+California: 
+	Los Angeles
+		In 1973 - Stadium: Memorial Coliseum
+		In 1967 - Stadium: Memorial Coliseum
+
+		California's Super Bowl count is 2.
+	Palo Alto
+		In 1985 - Stadium: Stanford Stadium
+
+		California's Super Bowl count is 1.
+	Pasadena
+		In 1993 - Stadium: Rose Bowl
+		In 1987 - Stadium: Rose Bowl
+		In 1983 - Stadium: Rose Bowl
+		In 1980 - Stadium: Rose Bowl
+		In 1977 - Stadium: Rose Bowl
+
+		California's Super Bowl count is 5.
+	San Diego
+		In 2003 - Stadium: Qualcomm Stadium
+		In 1998 - Stadium: Qualcomm Stadium
+		In 1988 - Stadium: Jack Murphy Stadium
+
+		California's Super Bowl count is 3.
+	Santa Clara
+		In 2016 - Stadium: Levi's Stadium
+
+		California's Super Bowl count is 1.
+Florida: 
+	Jacksonville
+		In 2005 - Stadium: Alltel Stadium
+
+		Florida's Super Bowl count is 1.
+	Miami
+		In 1979 - Stadium: Orange Bowl
+		In 1976 - Stadium: Orange Bowl
+		In 1971 - Stadium: Orange Bowl
+		In 1969 - Stadium: Orange Bowl
+		In 1968 - Stadium: Orange Bowl
+
+		Florida's Super Bowl count is 5.
+	Miami Gardens
+		In 2010 - Stadium: Sun Life Stadium
+		In 2007 - Stadium: Dolphin Stadium
+		In 1999 - Stadium: Pro Player Stadium
+		In 1995 - Stadium: Joe Robbie Stadium
+		In 1989 - Stadium: Joe Robbie Stadium
+
+		Florida's Super Bowl count is 5.
+	Tampa
+		In 2009 - Stadium: Raymond James Stadium
+		In 2001 - Stadium: Raymond James Stadium
+		In 1991 - Stadium: Tampa Stadium
+		In 1984 - Stadium: Tampa Stadium
+
+		Florida's Super Bowl count is 4.
+Georgia: 
+	Atlanta
+		In 2000 - Stadium: Georgia Dome
+		In 1994 - Stadium: Georgia Dome
+
+		Georgia's Super Bowl count is 2.
+Indiana: 
+	Indianapolis
+		In 2012 - Stadium: Lucas Oil Stadium
+
+		Indiana's Super Bowl count is 1.
+Louisiana: 
+	New Orleans
+		In 2013 - Stadium: Mercedes-Benz Superdome
+		In 2002 - Stadium: Louisiana Superdome
+		In 1997 - Stadium: Louisiana Superdome
+		In 1990 - Stadium: Louisiana Superdome
+		In 1986 - Stadium: Louisiana Superdome
+		In 1981 - Stadium: Louisiana Superdome
+		In 1978 - Stadium: Superdome
+		In 1975 - Stadium: Tulane Stadium
+		In 1972 - Stadium: Tulane Stadium
+		In 1970 - Stadium: Tulane Stadium
+
+		Louisiana's Super Bowl count is 10.
+Michigan: 
+	Detroit
+		In 2006 - Stadium: Ford Field
+
+		Michigan's Super Bowl count is 1.
+	Pontiac
+		In 1982 - Stadium: Pontiac Silverdome
+
+		Michigan's Super Bowl count is 1.
+Minnesota: 
+	Minneapolis
+		In 1992 - Stadium: Metrodome
+
+		Minnesota's Super Bowl count is 1.
+New Jersey: 
+	East Rutherford
+		In 2014 - Stadium: MetLife Stadium
+
+		New Jersey's Super Bowl count is 1.
+Texas: 
+	Arlington
+		In 2011 - Stadium: Cowboys Stadium
+
+		Texas's Super Bowl count is 1.
+	Houston
+		In 2017 - Stadium: NRG Stadium
+		In 2004 - Stadium: Reliant Stadium
+		In 1974 - Stadium: Rice Stadium
+
+		Texas's Super Bowl count is 3.
 
 
-Create the right headings, LeAnn
-Bart Starr won 10
-Joe Namath won 10
-Len Dawson won 10
-Chuck Howley won 12
-Roger Staubach won 14
-Jake Scott won 10
-Larry Csonka won 12
-Franco Harris won 13
-Lynn Swann won 10
-Fred Biletnikoff won 16
-"Harvey Martin, Randy White" won 28
-Terry Bradshaw won 14
-Jim Plunkett won 12
-Joe Montana won 11
-John Riggins won 12
-Marcus Allen won 12
-Richard Dent won 12
-Phil Simms won 10
-Doug Williams won 13
-Jerry Rice won 10
-Ottis Anderson won 14
-Mark Rypien won 11
-Troy Aikman won 11
-Emmitt Smith won 12
-Steve Young won 11
-Larry Brown won 11
-Desmond Howard won 14
-Terrell Davis won 13
-John Elway won 10
-Kurt Warner won 11
-Ray Lewis won 9
-Tom Brady won 9
-Dexter Jackson won 14
-Deion Branch won 12
-Hines Ward won 10
-Peyton Manning won 14
-Eli Manning won 11
-Santonio Holmes won 15
-Drew Brees won 10
-Aaron Rodgers won 13
-Joe Flacco won 10
-Malcolm Smith won 13
-Von Miller won 10
+Players Who Won MVP More than Twice:
+Joe Montana has 3.
+Tom Brady has 4.
 
 
-Create the right headings, LeAnn
-
-
-
-
-
-
-
-
-
-
-
-
+Coach Who Lost the Most Super Bowls:
