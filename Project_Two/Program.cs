@@ -156,20 +156,25 @@ namespace Project_Two
 						cfile.WriteLine("\n\nStates & Stats on SuperBowls Hosted\n");
 						Console.WriteLine("\n\nStates & Stats on SuperBowls Hosted\n");
 
-						var qryState = from stateRecord in Team
-									   group stateRecord by new
+						//declare a variable, and allow the type to be determined at run time, so just "var" and name it "qryState"
+						//set it to the result of this query below
+						var qryState = from stateRecord in Team // start by selecting objects in the team list array
+									   group stateRecord by new // group these objects I'm now called "stateRecord" by state, I'm conceptualizing a "row"
 									   {
-										   stateRecord.State
-									   } into stateGroups
-									   from cityGroups in
-										   (from city in stateGroups
-											orderby city.City, city.Sdate.Year descending, city.Stadium
-											group city by new { city.City })
-									   orderby stateGroups.Key.State
-									   group cityGroups by new { stateGroups.Key.State };
+										   stateRecord.State // instructing the grouping to be teh State attribute
+									   } into stateGroups // but I want to group by another level, so I drop into another query with my state results
+									   from cityGroups in // and now we are going to focus on cities
+										   (from city in stateGroups // we are selecting objects in the stateGroups results
+											orderby city.City, city.Sdate.Year descending, city.Stadium // and we are ordering them by city, then by year (descending) and then by stadium
+											group city by new { city.City }) //and we want to group by city
+									   orderby stateGroups.Key.State //order the whole thing by state
+									   group cityGroups by new { stateGroups.Key.State }; //group cities within states
+																						  //much of this felt backwards or upside down from straight up SQl coding. 
+												//I thought through the parts and then researched how the parts fall together with what tweaks in syntax for LINQ
+												//this is akin to a cursor in database procedures
 
 
-						foreach (var outerGroup in qryState)
+						foreach (var outerGroup in qryState) //now we need to output the above query. We've used foreach in project 1. I'm created 2 levels to output with indents 
 						{
 							Console.WriteLine($"{ outerGroup.Key.State }: ");
 							cfile.WriteLine($"{ outerGroup.Key.State }: ");
@@ -182,12 +187,12 @@ namespace Project_Two
 								foreach (var city in detail)
 
 								{
-									Console.WriteLine($"\t\tIn {city.Sdate.Year} - Stadium: { city.Stadium} ");
+									Console.WriteLine($"\t\tIn {city.Sdate.Year} - Stadium: { city.Stadium} ");//Using tabs for spacing
 									cfile.WriteLine($"\t\tIn {city.Sdate.Year} - Stadium: { city.Stadium}");
 									v_count++;
 
 								}
-								Console.WriteLine($"\n\t\t{outerGroup.Key.State}'s Super Bowl count is { v_count }.");
+								Console.WriteLine($"\n\t\t{outerGroup.Key.State}'s Super Bowl count is { v_count }."); //displayed, but also taking a count to display count
 								cfile.WriteLine($"\n\t\t{outerGroup.Key.State}'s Super Bowl count is { v_count }.");
 							}
 						}
